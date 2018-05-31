@@ -14,12 +14,13 @@ surface_set_target( _output_surface );
 draw_clear_alpha( c_black, 0 );
 surface_reset_target();
 
-gpu_set_blendmode_ext( bm_one, bm_zero );
+gpu_set_blendenable( false );
 gpu_set_tex_filter( false );
 for( var _y = 0; _y < _surface_height; _y += __BLOCK_SIZE ) {
     for( var _x = 0; _x < _surface_width; _x += __BLOCK_SIZE ) {
         
         surface_set_target( global.__scramble_work_surface );
+        draw_clear_alpha( c_black, 0 );
         draw_sprite( _sprite, _image, -_x, -_y );
         surface_reset_target();
         
@@ -32,7 +33,7 @@ for( var _y = 0; _y < _surface_height; _y += __BLOCK_SIZE ) {
         
     }
 }
-gpu_set_blendmode( bm_normal );
+gpu_set_blendenable( true );
 gpu_set_tex_filter( true );
 
 return _output_surface;

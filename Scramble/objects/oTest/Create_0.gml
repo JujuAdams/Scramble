@@ -1,7 +1,10 @@
-source_surface = surface_create( 1024, 768 );
+source_surface = surface_create( sprite_get_width( sSource ), sprite_get_height( sSource ) );
+gpu_set_blendenable( false );
 surface_set_target( source_surface );
+draw_clear_alpha( c_black, 0 );
 draw_sprite( sSource, 0, 0, 0 );
 surface_reset_target();
+gpu_set_blendenable( true );
 
 var _t = get_timer();
 result_surface = scramble_sprite( sSource, 0 );
